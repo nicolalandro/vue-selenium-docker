@@ -1,0 +1,10 @@
+FROM node:8.14.1-alpine as builder
+
+WORKDIR /project_compile/vue_app
+
+COPY vue_app /project_compile/vue_app
+
+RUN rm -rf node_modules
+RUN npm config set registry http://registry.npmjs.org/ && npm install
+
+CMD npm run test:unit

@@ -1,0 +1,23 @@
+FROM node:8.14.1-alpine
+
+RUN apk update && apk add --no-cache openjdk8-jre
+RUN apk update && apk add python py-pip curl unzip libexif udev nano
+
+ENV CHROME_BIN=/usr/bin/chromium-browser
+RUN echo @v3.8 http://nl.alpinelinux.org/alpine/v3.8/community >> /etc/apk/repositories && \
+    echo @v3.8 http://nl.alpinelinux.org/alpine/v3.8/main >> /etc/apk/repositories && \
+    apk add --no-cache \
+      chromium@v3.8 \
+      nss@v3.8
+
+# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+
+WORKDIR /project_compile/vue_app
+
+COPY vue_app /project_compile/vue_app
+RUN rm -rf node_modules
+
+RUN npm config set registry http://registry.npmjs.org/ && npm install
+
+CMD npm run test:e2e:headless

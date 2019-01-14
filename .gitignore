@@ -1,0 +1,12 @@
+.idea
+vue_app/node_modules
+vue_app/tests/e2e/reports
+public
+
+# boh
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+selenium-debug.log

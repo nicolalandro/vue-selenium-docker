@@ -1,0 +1,22 @@
+version: '2.3'
+
+services:
+  #  app:
+  #    build:
+  #      context: ../../..
+  #      dockerfile: docker/test/js/DockerfileE2E
+  #    command: npm run serve
+  #    ports:
+  #      - 8080:8080
+#  selenium:
+#    image: selenium/standalone-chrome
+#    volumes:
+#      - '../../../vue_app:/vue_app'
+#    command: java -Dwebdriver.chrome.driver=/vue_app/node_modules/chromedriver/b/chromedriver/chromedriver -jar /vue_app/node_modules/selenium-server/lib/runner/selenium-server-standalone-3.141.59.jar -port 4444
+#    ports:
+#      - 4444:4444
+
+  e2e:
+    build:
+      context: ../../..
+      dockerfile: docker/test/js/DockerfileE2E
